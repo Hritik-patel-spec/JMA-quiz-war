@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JMA QUIZ WAR 2026</title>
+
+<!-- External Scripts -->
+<script src="questions.js"></script>
+<script src="music.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: radial-gradient(circle at center, #0a1f44 0%, #020b18 100%);
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Watermark Logo */
+.bg-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 70vh;
+    height: 70vh;
+    background: url('jma.png') no-repeat center center / contain;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1s ease-in-out;
+    z-index: 0;
+}
+
+.bg-watermark.active {
+    opacity: 0.12;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    background: rgba(10, 25, 55, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+#welcomeScreen .main-logo {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 25px;
+    background: url('jma.png') no-repeat center center / contain;
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7));
+    transition: transform 0.4s ease;
+}
+
+#welcomeScreen .main-logo:hover {
+    transform: scale(1.08);
+}
+
+h1 {
+    color: #ffd700;
+    font-size: 3.2rem;
+    margin: 10px 0;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #e0e0e0;
+    font-size: 1.8rem;
+    margin-top: 0;
+    font-weight: 400;
+}
+
+.sub-text {
+    color: #a0b2d6;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+#counter {
+    font-size: 1.2rem;
+    color: #a0b2d6;
+    letter-spacing: 1px;
+}
+
+.timer {
+    font-size: 2.2rem;
+    color: #ffd700;
+    margin: 15px 0 25px 0;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+#question {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.4;
+    max-width: 85%;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 34, 68, 0.8);
+    padding: 20px 40px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Options Grid & Auto Option A, B, C, D */
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 85%;
+    max-width: 1200px;
+    counter-reset: option-counter;
+}
+
+.option {
+    padding: 22px 30px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 15px;
+    background: linear-gradient(135deg, #112244 0%, #0d1a33 100%);
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.option::before {
+    counter-increment: option-counter;
+    content: "Option " counter(option-counter, upper-alpha) ": ";
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.option:hover {
+    background: linear-gradient(135deg, #1f3d7a 0%, #152952 100%);
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.correct {
+    background: linear-gradient(135deg, #008000 0%, #004d00 100%) !important;
+    border-color: #00ff00 !important;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7) !important;
+}
+
+.wrong {
+    background: linear-gradient(135deg, #cc0000 0%, #800000 100%) !important;
+    border-color: #ff3333 !important;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7) !important;
+}
+
+.selected {
+    border-color: #00ffff !important;
+    box-shadow: 0 0 20px #00ffff !important;
+}
+
+/* Control Buttons */
+.controls {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 16px 35px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+    color: #06142e;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Reveal Button Styling */
+#revealBtn {
+    background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+    color: white;
+    box-shadow: 0 5px 20px rgba(0, 210, 255, 0.4);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
+}
+
+#revealBtn:hover {
+    box-shadow: 0 8px 30px rgba(0, 210, 255, 0.7);
+}
+
+button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.hidden {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+
+<div id="bgWatermark" class="bg-watermark"></div>
+
+<!-- WELCOME SCREEN -->
+<div id="welcomeScreen" class="container">
+    <div class="main-logo"></div>
+    <h1>🏆 JMA QUIZ WAR 2026 🏆</h1>
+    <h2>Jesus and Mary Academy</h2>
+    <p class="sub-text">Welcome to the Annual Inter-House Quiz Competition</p>
+    <p style="font-size: 1rem; color: #ffd700; opacity: 0.8;">(Best of Luck)</p>
+    <br>
+    <button id="startQuizBtn">START QUIZ</button>
+</div>
+
+<!-- QUIZ SCREEN -->
+<div id="quizScreen" class="container" style="display:none;">
+    <h1>JMA QUIZ WAR 2026</h1>
+    <div id="counter"></div>
+    <div class="timer">
+        ⏳ Time Left: <span id="timer">30</span>s
+    </div>
+    <div id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="controls">
+        <button id="prevBtn">Previous Question</button>
+        <button id="revealBtn">Reveal Answer 💡</button>
+        <button id="nextBtn" class="hidden">Next Question</button>
+    </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="resultScreen" class="container" style="display:none;">
+    <h1>🎉 Quiz Completed! 🎉</h1>
+    <button onclick="location.reload()">Restart Quiz</button>
+</div>
+
+<script>
+let questionHistory = {};
+let currentQuestion = 0;
+let timer = null;
+let timeLeft = 30;
+let score = 0;
+let selectedOptionText = null;
+let isAnswerRevealed = false;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const timerEl = document.getElementById("timer");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const revealBtn = document.getElementById("revealBtn");
+const counterEl = document.getElementById("counter");
+const startBtn = document.getElementById("startQuizBtn");
+const welcomeScreen = document.getElementById("welcomeScreen");
+const quizScreen = document.getElementById("quizScreen");
+const resultScreen = document.getElementById("resultScreen");
+const finalScoreEl = document.getElementById("finalScore");
+const bgWatermark = document.getElementById("bgWatermark");
+
+function stopAllAudio() {
+    if (typeof stopBgMusic === 'function') stopBgMusic();
+    if (typeof stopTimerSound === 'function') stopTimerSound();
+}
+
+startBtn.onclick = () => {
+    stopAllAudio();
+    welcomeScreen.style.display = "none";
+    quizScreen.style.display = "flex";
+    bgWatermark.classList.add("active");
+    loadQuestion();
+};
+
+prevBtn.onclick = () => {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
+    }
+};
+
+nextBtn.onclick = () => {
+    if (typeof quizData !== 'undefined' && currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+    } else {
+        showResults();
+    }
+};
+
+// Reveal Answer Button Click Event
+revealBtn.onclick = () => {
+    revealAnswer();
+};
+
+function startTimer() {
+    clearInterval(timer);
+    timeLeft = 30;
+    timerEl.textContent = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+
+        if (timeLeft === 10 && typeof playTimerSound === 'function') {
+            playTimerSound();
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            stopAllAudio();
+            
+        }
+    }, 1000);
+}
+
+function loadQuestion() {
+    stopAllAudio();
+    clearInterval(timer);
+    selectedOptionText = null;
+    isAnswerRevealed = false;
+
+    if (typeof quizData === 'undefined' || !quizData.length) {
+        questionEl.textContent = "Error: questions.js load nahi ho paaya!";
+        return;
+    }
+
+    prevBtn.disabled = (currentQuestion === 0);
+    counterEl.textContent = `Question ${currentQuestion + 1} / ${quizData.length}`;
+
+    const q = quizData[currentQuestion];
+    questionEl.textContent = q.question;
+    optionsEl.innerHTML = "";
+
+    q.options.forEach(option => {
+        const btn = document.createElement("div");
+        btn.classList.add("option");
+        btn.textContent = option;
+        btn.onclick = () => selectOption(btn, option);
+        optionsEl.appendChild(btn);
+    });
+
+    revealBtn.classList.remove("hidden");
+    revealBtn.disabled = false;
+    nextBtn.classList.add("hidden");
+
+    // Previous History Restore
+    if (questionHistory[currentQuestion]?.revealed) {
+        restoreQuestionState();
+        return;
+    }
+
+    startTimer();
+}
+
+// User click on Option (Highlight selection before revealing)
+function selectOption(selectedBtn, optionText) {
+    if (isAnswerRevealed) return; // Answer reveal hone ke baad change mat hone do
+
+    selectedOptionText = optionText;
+
+    document.querySelectorAll(".option").forEach(opt => {
+        opt.classList.remove("selected");
+    });
+    selectedBtn.classList.add("selected");
+}
+
+// Actual Answer Reveal Handler
+function revealAnswer() {
+    clearInterval(timer);
+    stopAllAudio();
+
+    isAnswerRevealed = true;
+    revealBtn.disabled = true;
+
+    const correct = quizData[currentQuestion].correct;
+
+    if (selectedOptionText === correct) {
+        score++;
+        if (typeof playCorrectSound === 'function') playCorrectSound();
+    } else {
+        if (typeof playWrongSound === 'function') playWrongSound();
+    }
+
+    // Lock and Colorize Options
+    document.querySelectorAll(".option").forEach(opt => {
+        opt.style.pointerEvents = "none";
+        opt.classList.remove("selected");
+
+        if (opt.textContent === correct) {
+            opt.classList.add("correct");
+        }
+        if (selectedOptionText && selectedOptionText !== correct && opt.textContent === selectedOptionText) {
+            opt.classList.add("wrong");
+        }
+    });
+
+    // Save state in History
+    questionHistory[currentQuestion] = {
+        revealed: true,
+        selected: selectedOptionText
+    };
+
+    revealBtn.classList.add("hidden");
+    nextBtn.classList.remove("hidden");
+}
+
+function restoreQuestionState() {
+    const previousAnswer = questionHistory[currentQuestion].selected;
+    const correct = quizData[currentQuestion].correct;
+
+    document.querySelectorAll(".option").forEach(opt => {
+        opt.style.pointerEvents = "none";
+
+        if (opt.textContent === correct) {
+            opt.classList.add("correct");
+        }
+        if (previousAnswer !== correct && opt.textContent === previousAnswer) {
+            opt.classList.add("wrong");
+        }
+    });
+
+    revealBtn.classList.add("hidden");
+    nextBtn.classList.remove("hidden");
+}
+
+function showResults() {
+    stopAllAudio();
+    quizScreen.style.display = "none";
+    resultScreen.style.display = "flex";
+    finalScoreEl.textContent = `You scored ${score} out of ${quizData.length}!`;
+}
+</script>
+
+</body>
+</html>

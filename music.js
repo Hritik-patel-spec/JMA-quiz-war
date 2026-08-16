@@ -6,7 +6,7 @@ bgMusic.volume = 0.5;
 // Sound Effects
 const correctSound = new Audio("correct.wav");
 const wrongSound = new Audio("wrong.mp3");
-const timerSound = new Audio("timer.mp3");
+const timerSound = new Audio("timer.MP3");
 
 // Start background music on first click
 document.addEventListener("click", () => {

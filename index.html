@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>JMA QUIZ WAR 2026</title>
 
 <!-- External Scripts -->
@@ -17,8 +17,9 @@
 html, body {
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh; 
     font-family: 'Poppins', Arial, sans-serif;
     background: #11052c;
     color: white;
@@ -44,24 +45,24 @@ html, body {
     object-fit: cover;
 }
 
-/* SVG Icon Styling */
 .svg-icon {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     fill: currentColor;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 8px;
+    margin-right: 6px;
+    flex-shrink: 0;
 }
 
 .svg-icon-large {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     fill: #ffd700;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 12px;
     filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+    flex-shrink: 0;
 }
 
 .bg-watermark {
@@ -79,24 +80,26 @@ html, body {
 }
 
 .bg-watermark.active {
-    opacity: 0.15;
+    opacity: 0.12;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
 .container {
     position: relative;
     z-index: 2;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px 20px;
     text-align: center;
     background: rgba(15, 8, 38, 0.45);
-    backdrop-filter: blur(6px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-sizing: border-box;
 }
 
 .page-enter {
@@ -106,8 +109,8 @@ html, body {
 @keyframes pageIn {
     0% {
         opacity: 0;
-        transform: scale(0.9) translateY(20px);
-        filter: blur(10px);
+        transform: scale(0.95) translateY(15px);
+        filter: blur(8px);
     }
     100% {
         opacity: 1;
@@ -117,77 +120,81 @@ html, body {
 }
 
 #welcomeScreen .main-logo {
-    width: 200px;
-    height: 200px;
+    width: 300px;  /* Purana: 220px (ya 150px) -> Isse bada karke 280px kar dein */
+    height: 300px; /* Width ke barabar rakein */
+    max-width: 80vw; /* Mobile screen ke hisab se responsive rakhne ke liye */
     margin-bottom: 20px;
     background: url('jma.png') no-repeat center center / contain;
-    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7));
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
     transition: transform 0.4s ease;
-}
-
-#welcomeScreen .main-logo:hover {
-    transform: scale(1.08);
 }
 
 h1 {
     color: #ffd700;
-    font-size: 2.8rem;
-    margin: 10px 0;
+    font-size: 3.2rem; /* Purana: 2.2rem */
+    margin: 15px 0;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 h2 {
     color: #f0e6ff;
-    font-size: 1.7rem;
-    margin-top: 0;
-    font-weight: 400;
+    font-size: 2.2rem; /* Purana: 1.4rem */
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 .sub-text {
     color: #d1b8ff;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
+    font-size: 1.4rem; /* Purana: 1rem */
+    margin-bottom: 35px;
 }
 
-/* Menu Grid Layout */
+#startBtn {
+    padding: 16px 50px;
+    font-size: 1.5rem;
+    border-radius: 40px;
+}
+
+/* Menu Grid & Category Cards Layout Expansion */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 90%;
-    max-width: 950px;
-    margin-top: 20px;
+    gap: 25px; /* Purana: 15px */
+    width: 90%; /* Screen breadth maximize karne ke liye */
+    max-width: 1300px; /* Purana: 950px */
+    margin-top: 30px;
 }
 
 .category-card {
-    padding: 22px 15px;
-    background: linear-gradient(135deg, rgba(35, 18, 68, 0.85) 0%, rgba(20, 10, 45, 0.85) 100%);
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    border-radius: 15px;
+    padding: 28px 20px; /* Height & spacing badhane ke liye */
+    background: linear-gradient(135deg, rgba(35, 18, 68, 0.88) 0%, rgba(20, 10, 45, 0.88) 100%);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    border-radius: 16px;
     color: #ffd700;
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Purana: 1.1rem */
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    min-height: 110px;
-    gap: 10px;
+    min-height: 120px; /* Purana: 80px */
+    gap: 12px;
     backdrop-filter: blur(8px);
 }
 
 .category-card:hover:not(.disabled) {
-    transform: translateY(-5px) scale(1.03);
+    transform: translateY(-3px) scale(1.02);
     border-color: #ffd700;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
     background: linear-gradient(135deg, rgba(60, 25, 110, 0.9) 0%, rgba(40, 15, 80, 0.9) 100%);
 }
 
@@ -201,65 +208,67 @@ h2 {
 }
 
 #counter {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #d1b8ff;
     letter-spacing: 1px;
 }
 
 .timer {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #ffd700;
-    margin: 15px 0 25px 0;
+    margin: 10px 0 15px 0;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 #question {
-    font-size: 2rem;
-    margin-bottom: 40px;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
     font-weight: 600;
     color: #ffffff;
     line-height: 1.4;
-    max-width: 85%;
-    min-height: 90px;
+    width: 100%;
+    max-width: 900px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(25, 12, 50, 0.85);
-    padding: 20px 40px;
-    border-radius: 20px;
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    padding: 18px 20px;
+    border-radius: 15px;
+    border: 1.5px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     backdrop-filter: blur(10px);
 }
 
 .options {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    width: 85%;
-    max-width: 1200px;
+    gap: 15px;
+    width: 100%;
+    max-width: 900px;
     counter-reset: option-counter;
 }
 
 .option {
-    padding: 22px 30px;
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    border-radius: 15px;
+    padding: 16px 20px;
+    border: 1.5px solid rgba(255, 215, 0, 0.5);
+    border-radius: 12px;
     background: linear-gradient(135deg, rgba(30, 15, 60, 0.9) 0%, rgba(18, 8, 40, 0.9) 100%);
     cursor: pointer;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 8px;
     backdrop-filter: blur(8px);
+    text-align: left;
 }
 
 .option::before {
@@ -267,71 +276,69 @@ h2 {
     content: "Option " counter(option-counter, upper-alpha) ": ";
     font-weight: bold;
     color: #ffd700;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    flex-shrink: 0;
 }
 
 .option:hover {
     background: linear-gradient(135deg, rgba(60, 25, 110, 0.95) 0%, rgba(40, 15, 80, 0.95) 100%);
     border-color: #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
 }
 
 .correct {
     background: linear-gradient(135deg, #008000 0%, #004d00 100%) !important;
     border-color: #00ff00 !important;
-    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7) !important;
 }
 
 .wrong {
     background: linear-gradient(135deg, #cc0000 0%, #800000 100%) !important;
     border-color: #ff3333 !important;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7) !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7) !important;
 }
 
 .selected {
     border-color: #00ffff !important;
-    box-shadow: 0 0 20px #00ffff !important;
+    box-shadow: 0 0 15px #00ffff !important;
 }
 
 .controls {
-    margin-top: 35px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 button {
-    padding: 16px 35px;
-    font-size: 1.2rem;
+    padding: 12px 24px;
+    font-size: 1.05rem;
     cursor: pointer;
     border: none;
-    border-radius: 40px;
+    border-radius: 30px;
     background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
     color: #06142e;
     font-weight: bold;
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 #revealBtn {
     background: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%);
     color: white;
-    box-shadow: 0 5px 20px rgba(255, 94, 98, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
-}
-
-#revealBtn:hover {
-    box-shadow: 0 8px 30px rgba(255, 94, 98, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.7);
 }
 
 button:disabled {
@@ -341,22 +348,164 @@ button:disabled {
     box-shadow: none;
 }
 
+.rule-list {
+    width: 92%;
+    max-width: 800px;
+    background: rgba(25, 12, 50, 0.85);
+    padding: 24px 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
 .rule-list p {
-    font-size: 1.2rem;
-    line-height: 2;
+    font-size: 1rem;
+    line-height: 1.6;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin: 10px 0;
+}
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.rule-item:last-child {
+    margin-bottom: 0;
+}
+
+.rule-item .svg-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    fill: #ffd700;
+    margin-top: 2px; /* Checkmark icon alignment with text top line */
+}
+
+.rule-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #f0e6ff;
+}
+
+.rule-text strong {
+    color: #ffd700;
+    margin-right: 6px;
+    white-space: nowrap; /* Title and content inline flow */
 }
 
 .hidden {
     display: none !important;
 }
 
+/* MOBILE RESPONSIVE MEDIA QUERIES */
 @media screen and (max-width: 768px) {
+    .container {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 20px 15px !important;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    #welcomeScreen .main-logo {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        margin: 8px 0;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .sub-text {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+  .svg-icon-large {
+    width: 55px;
+    height: 55px;
+}
+
     .menu-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        max-height: 55vh;
+        overflow-y: auto;
+        padding-right: 4px;
+    }
+
+    .category-card {
+        min-height: 50px;
+        font-size: 0.98rem;
+        padding: 12px 15px;
+        justify-content: flex-start;
+    }
+
+    #question {
+        font-size: 1.05rem;
+        padding: 12px 15px;
+        min-height: 65px;
+        margin-bottom: 12px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .option {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .option::before {
+        font-size: 0.95rem;
+    }
+
+    .timer {
+        font-size: 1.3rem;
+        margin: 5px 0 10px 0;
+    }
+
+    .controls {
+        margin-top: 15px;
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    button {
+        width: 100%;
+        max-width: 320px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .rule-list {
+        padding: 18px 14px;
+    }
+
+    .rule-list p {
+        font-size: 0.88rem;
+    }
+    .rule-text {
+        font-size: 0.92rem;
     }
 }
 </style>
@@ -367,7 +516,6 @@ button:disabled {
 <div class="vector-bg-layer">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
         <defs>
-            <!-- Sky Gradient -->
             <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#3a2569"/>
                 <stop offset="25%" stop-color="#692d7d"/>
@@ -376,7 +524,6 @@ button:disabled {
                 <stop offset="100%" stop-color="#fca96a"/>
             </linearGradient>
 
-            <!-- Sun Glow -->
             <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#fff6d1"/>
                 <stop offset="40%" stop-color="#ffcc66"/>
@@ -384,7 +531,6 @@ button:disabled {
                 <stop offset="100%" stop-color="#f8735f" stop-opacity="0"/>
             </radialGradient>
 
-            <!-- Mountain Layers Gradients -->
             <linearGradient id="mountGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#e25372"/>
                 <stop offset="100%" stop-color="#a8336d"/>
@@ -405,40 +551,26 @@ button:disabled {
                 <stop offset="100%" stop-color="#110e3d"/>
             </linearGradient>
 
-            <!-- Pine Tree Definition -->
             <g id="pineTree">
                 <polygon points="0,-40 -12,-15 -5,-15 -18,10 -8,10 -22,35 22,35 8,10 18,10 5,-15 12,-15" />
             </g>
         </defs>
 
-        <!-- Sky Base -->
         <rect width="1920" height="1080" fill="url(#skyGrad)"/>
 
-        <!-- Clouds -->
         <path d="M-50 250 Q100 200 300 240 T700 220 T1100 250 T1500 210 Q1750 200 1970 240 L1970 0 L-50 0 Z" fill="#ffffff" fill-opacity="0.12"/>
         <path d="M-50 350 Q200 300 450 330 T950 310 T1450 340 Q1750 310 1970 330 L1970 0 L-50 0 Z" fill="#ffa07a" fill-opacity="0.18"/>
 
-        <!-- Sun with Sunburst Glow -->
         <circle cx="960" cy="510" r="220" fill="url(#sunGlow)"/>
         <circle cx="960" cy="510" r="90" fill="#fff9e6"/>
 
-        <!-- Far Background Mountains -->
         <path d="M-100 620 L150 480 L350 560 L580 430 L800 580 L960 490 L1150 590 L1400 420 L1680 550 L2020 400 L2020 1080 L-100 1080 Z" fill="url(#mountGrad1)" opacity="0.9"/>
-
-        <!-- Midground Mountains -->
         <path d="M-100 700 L280 500 L550 640 L850 470 L1100 630 L1450 450 L1750 620 L2020 490 L2020 1080 L-100 1080 Z" fill="url(#mountGrad2)"/>
-
-        <!-- Fog / Mist Layer -->
         <path d="M-50 680 Q450 620 960 670 T1970 650 L1970 780 L-50 780 Z" fill="#f8735f" opacity="0.25"/>
-
-        <!-- Near Mountains / Ridges -->
         <path d="M-100 800 L200 600 L600 820 L1000 620 L1350 810 L1800 580 L2020 720 L2020 1080 L-100 1080 Z" fill="url(#mountGrad3)"/>
-
-        <!-- Foreground Valleys & Hills -->
         <path d="M-100 880 Q350 750 850 890 T1920 810 L2020 1080 L-100 1080 Z" fill="url(#valleyGrad)"/>
         <path d="M-100 950 Q450 820 1100 970 T2020 890 L2020 1080 L-100 1080 Z" fill="#0d082b"/>
 
-        <!-- Foreground Pine Trees Silhouettes -->
         <g fill="#070419">
             <use href="#pineTree" x="80" y="920" transform="scale(1.2)" />
             <use href="#pineTree" x="140" y="930" transform="scale(0.9)" />
@@ -474,37 +606,46 @@ button:disabled {
 <div id="introScreen" class="container page-enter" style="display:none;">
     <h1>
         <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        RULES & INSTRUCTIONS
+        RULES & REGULATIONS
     </h1>
-    <div class="rule-list" style="max-width: 800px; text-align: left; background: rgba(25, 12, 50, 0.75); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,215,0,0.4); margin: 20px 0;">
-        <p>
-            <svg class="svg-icon" style="fill:#ffd700;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Each question carries a 30-second timer.
-        </p>
-        <p>
-            <svg class="svg-icon" style="fill:#ffd700;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Select your category from the Menu.
-        </p>
-        <p>
-            <svg class="svg-icon" style="fill:#ffd700;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Options lock upon clicking 'Reveal Answer'.
-        </p>
-        <p>
-            <svg class="svg-icon" style="fill:#ffd700;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            After finishing a category, you will return to the Menu Screen.
-        </p>
-        <p>
-            <svg class="svg-icon" style="fill:#ffd700;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Completed categories will fade out and lock.
-        </p>
-    </div>
-    <button id="introNextBtn">NEXT</button>
-</div>
+    
+    <div class="rule-list">
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>Time Limit:</strong> Each question carries a strict 20-second countdown timer.</div>
+        </div>
 
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>Category Selection:</strong> Houses can select any available category from the Main Menu.</div>
+        </div>
+
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>Locking Answers:</strong> Click on an option to select, then press 'Reveal Answer' to lock and score.</div>
+        </div>
+
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>No Changing Choice:</strong> Once 'Reveal Answer' is clicked, the selected option cannot be changed.</div>
+        </div>
+
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>Category Completion:</strong> Completing a round locks that category permanently on the Menu Screen.</div>
+        </div>
+
+        <div class="rule-item">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="rule-text"><strong>Final Scorecard:</strong> The consolidated final leaderboard will appear after all categories are played.</div>
+        </div>
+    </div>
+    
+    <button id="introNextBtn">PROCEED TO MENU</button>
+</div>
 <!-- 3. MENU SCREEN (INDEX PAGE) -->
 <div id="menuScreen" class="container page-enter" style="display:none;">
     <h1>
-        <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
         SELECT QUIZ CATEGORY
     </h1>
     <div class="menu-grid">
@@ -533,7 +674,7 @@ button:disabled {
             Cinema & Movies
         </div>
     </div>
-    <br><br>
+    <br>
     <button id="finishQuizBtn" class="hidden" onclick="showResults()">
         SHOW FINAL SCORE
         <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V18H8v2h8v-2h-3v-2.1c2.08-.43 3.68-2.1 3.96-4.24C19.32 11.36 21 9.38 21 7V5c0-1.1-.9-2-2-2z"/></svg>
@@ -567,6 +708,7 @@ button:disabled {
         Quiz Completed!
     </h1>
     <h2 id="finalScore" style="color: #ffd700; margin-top: 20px;"></h2>
+    <br>
     <button onclick="location.reload()">Restart Quiz</button>
 </div>
 
@@ -576,7 +718,7 @@ let activeQuestions = [];
 let questionHistory = {};
 let currentQuestion = 0;
 let timer = null;
-let timeLeft = 30;
+let timeLeft = 20;
 let totalScore = 0;
 let selectedOptionText = null;
 let isAnswerRevealed = false;
@@ -648,10 +790,12 @@ nextBtn.onclick = () => {
         currentQuestion++;
         loadQuestion();
     } else {
-        completedCategories.push(activeCategoryKey);
-        markCategoryCompleted(activeCategoryKey);
+        if (!completedCategories.includes(activeCategoryKey)) {
+            completedCategories.push(activeCategoryKey);
+            markCategoryCompleted(activeCategoryKey);
+        }
 
-        if (completedCategories.length === Object.keys(quizData).length) {
+        if (typeof quizData !== 'undefined' && completedCategories.length === Object.keys(quizData).length) {
             showResults();
         } else {
             finishQuizBtn.classList.remove("hidden");
@@ -664,8 +808,8 @@ function markCategoryCompleted(catKey) {
     const card = document.getElementById(`cat-${catKey}`);
     if (card) {
         card.classList.add("disabled");
-        const checkSvg = `<svg class="svg-icon" style="fill:#00ff00; width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
-        card.innerHTML += `<br><span style='font-size: 0.85rem; color: #00ff00; display: inline-flex; align-items: center; gap: 4px; margin-top: 5px;'>${checkSvg} Completed</span>`;
+        const checkSvg = `<svg class="svg-icon" style="fill:#00ff00; width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
+        card.innerHTML += `<span style='font-size: 0.8rem; color: #00ff00; display: inline-flex; align-items: center; gap: 4px; margin-left: auto;'>${checkSvg} Done</span>`;
     }
 }
 
@@ -673,7 +817,7 @@ revealBtn.onclick = () => revealAnswer();
 
 function startTimer() {
     clearInterval(timer);
-    timeLeft = 30;
+    timeLeft = 20;
     timerEl.textContent = timeLeft;
 
     timer = setInterval(() => {
@@ -782,9 +926,15 @@ function restoreQuestionState() {
 function showResults() {
     stopAllAudio();
     let totalQuestionsCount = 0;
-    Object.keys(quizData).forEach(cat => totalQuestionsCount += quizData[cat].length);
+    
+    if (typeof quizData !== 'undefined') {
+        completedCategories.forEach(cat => {
+            if (quizData[cat]) totalQuestionsCount += quizData[cat].length;
+        });
+    }
 
-    switchScreen(quizScreen.style.display !== 'none' ? quizScreen : menuScreen, resultScreen);
+    const currentVisible = (quizScreen.style.display !== 'none') ? quizScreen : menuScreen;
+    switchScreen(currentVisible, resultScreen);
     finalScoreEl.textContent = `Overall Score: ${totalScore} out of ${totalQuestionsCount}!`;
 }
 </script>

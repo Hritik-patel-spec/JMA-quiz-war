@@ -1,194 +1,194 @@
 const quizData = {
     gk: [
         {
-            "question": "Which instrument measures electric current?",
-            "options": ["Voltmeter", "Ammeter", "Thermometer", "Barometer"],
-            "correct": "Ammeter"
+            "question": "Which is the largest continent in the world?",
+            "options": ["Africa", "Asia", "Europe", "Australia"],
+            "correct": "Asia"
         },
         {
-            "question": "Which country has the most volcanoes?",
-            "options": ["Japan", "Indonesia", "India", "Brazil"],
-            "correct": "Indonesia"
-        },
-        {
-            "question": "Which fruit has its seeds on the outside?",
-            "options": ["Apple", "Mango", "Strawberry", "Orange"],
-            "correct": "Strawberry"
-        },
-        {
-            "question": "What is the capital of Australia?",
-            "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+            "question": "What is the capital city of Australia?",
+            "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
             "correct": "Canberra"
         },
         {
-            "question": "Which is the only river in the world that crosses the Equator twice?",
-            "options": ["Amazon River", "Nile River", "Congo River", "Mississippi River"],
-            "correct": "Congo River"
+            "question": "Which is the largest ocean on Earth?",
+            "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+            "correct": "Pacific Ocean"
         },
         {
-            "question": "Which country is called the 'Land of Fire and Ice'?",
-            "options": ["Greenland", "Iceland", "New Zealand", "Japan"],
-            "correct": "Iceland"
+            "question": "How many colors are there in a rainbow?",
+            "options": ["Five", "Six", "Seven", "Eight"],
+            "correct": "Seven"
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["Venus", "Mars", "Jupiter", "Mercury"],
+            "correct": "Mars"
+        },
+        {
+            "question": "What is the national animal of India?",
+            "options": ["Lion", "Elephant", "Bengal Tiger", "Leopard"],
+            "correct": "Bengal Tiger"
         }
     ],
     history: [
         {
-            "question": "In which year was the Battle of Buxar fought?",
-            "options": ["1757", "1761", "1764", "1857"],
-            "correct": "1764"
+            "question": "Who is known as the Father of the Nation in India?",
+            "options": ["Subhas Chandra Bose", "Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Patel"],
+            "correct": "Mahatma Gandhi"
         },
         {
-            "question": "Who was known as the 'Iron Man of India'?",
-            "options": ["Subhas Chandra Bose", "Sardar Vallabhbhai Patel", "Bhagat Singh", "Jawaharlal Nehru"],
-            "correct": "Sardar Vallabhbhai Patel"
+            "question": "Who was the first Prime Minister of independent India?",
+            "options": ["Dr. Rajendra Prasad", "Sardar Patel", "Jawaharlal Nehru", "Lal Bahadur Shastri"],
+            "correct": "Jawaharlal Nehru"
         },
         {
-            "question": "Who wrote the book Arthashastra?",
-            "options": ["Kalidasa", "Chanakya (Kautilya)", "Banabhatta", "Aryabhata"],
-            "correct": "Chanakya (Kautilya)"
-        },
-        {
-            "question": "Which Viceroy announced the partition of Bengal in 1905?",
-            "options": ["Lord Dalhousie", "Lord Curzon", "Lord Mountbatten", "Lord Ripon"],
-            "correct": "Lord Curzon"
-        },
-        {
-            "question": "Who was the founder of the Maurya Empire?",
-            "options": ["Ashoka", "Chandragupta Maurya", "Bindusara", "Brihadratha"],
+            "question": "Who founded the Maurya Empire?",
+            "options": ["Ashoka", "Chandragupta Maurya", "Harshavardhana", "Samudragupta"],
             "correct": "Chandragupta Maurya"
         },
         {
-            "question": "Which Indian leader gave the slogan 'Jai Jawan, Jai Kisan'?",
-            "options": ["Lal Bahadur Shastri", "Mahatma Gandhi", "Subhas Chandra Bose", "Jawaharlal Nehru"],
-            "correct": "Lal Bahadur Shastri"
+            "question": "Which Mughal emperor built the Taj Mahal?",
+            "options": ["Akbar", "Babur", "Shah Jahan", "Aurangzeb"],
+            "correct": "Shah Jahan"
+        },
+        {
+            "question": "Who was popularly known as the “Nightingale of India”?",
+            "options": ["Sarojini Naidu", "Rani Lakshmibai", "Annie Besant", "Indira Gandhi"],
+            "correct": "Sarojini Naidu"
+        },
+        {
+            "question": "In which year did India become independent?",
+            "options": ["1945", "1946", "1947", "1950"],
+            "correct": "1947"
         }
     ],
     science: [
         {
-            "question": "Which part of the brain controls balance and coordination?",
-            "options": ["Cerebrum", "Cerebellum", "Brainstem", "Hypothalamus"],
-            "correct": "Cerebellum"
+            "question": "Which organ pumps blood throughout our body?",
+            "options": ["Brain", "Lungs", "Heart", "Kidney"],
+            "correct": "Heart"
         },
         {
-            "question": "Which element is essential for the formation of hemoglobin?",
-            "options": ["Calcium", "Iron", "Sodium", "Potassium"],
-            "correct": "Iron"
+            "question": "Which gas do plants mainly take in during photosynthesis?",
+            "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+            "correct": "Carbon dioxide"
         },
         {
-            "question": "What is the pH value of pure water?",
-            "options": ["5", "6", "7", "8"],
-            "correct": "7"
+            "question": "What force pulls objects towards the Earth?",
+            "options": ["Friction", "Gravity", "Magnetism", "Electricity"],
+            "correct": "Gravity"
         },
         {
-            "question": "What is the largest bone in the human body?",
-            "options": ["Tibia", "Femur", "Humerus", "Radius"],
-            "correct": "Femur"
+            "question": "Which is the closest star to Earth?",
+            "options": ["Sirius", "Polaris", "The Sun", "Alpha Centauri"],
+            "correct": "The Sun"
         },
         {
-            "question": "Which gas is known as 'laughing gas'?",
-            "options": ["Nitrous oxide (N₂O)", "Carbon monoxide", "Methane", "Sulfur dioxide"],
-            "correct": "Nitrous oxide (N₂O)"
+            "question": "What does CPU stand for in a computer?",
+            "options": ["Central Processing Unit", "Computer Processing Utility", "Central Program Unit", "Computer Power Unit"],
+            "correct": "Central Processing Unit"
         },
         {
-            "question": "Which metal is liquid at room temperature?",
-            "options": ["Gallium", "Mercury", "Bromine", "Sodium"],
-            "correct": "Mercury"
+            "question": "Which device is commonly used to take photographs digitally?",
+            "options": ["Printer", "Digital camera", "Speaker", "Keyboard"],
+            "correct": "Digital camera"
         }
     ],
     sports: [
         {
-            "question": "Which sport is known as the 'Gentleman's Game'?",
-            "options": ["Golf", "Cricket", "Tennis", "Polo"],
-            "correct": "Cricket"
+            "question": "How many players are there in a cricket team on the field?",
+            "options": ["9", "10", "11", "12"],
+            "correct": "11"
         },
         {
-            "question": "What is the highest sporting award in India?",
-            "options": ["Arjuna Award", "Major Dhyan Chand Khel Ratna Award", "Dronacharya Award", "Padma Bhushan"],
-            "correct": "Major Dhyan Chand Khel Ratna Award"
+            "question": "Which sport is associated with the Wimbledon Championship?",
+            "options": ["Cricket", "Tennis", "Football", "Hockey"],
+            "correct": "Tennis"
         },
         {
-            "question": "How many players are there on the field in a standard Kabaddi team?",
-            "options": ["6", "7", "8", "11"],
-            "correct": "7"
+            "question": "How many rings are there in the Olympic symbol?",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "correct": "Five"
         },
         {
-            "question": "What is the distance of a full marathon race?",
-            "options": ["21.09 km", "42.195 km", "50 km", "35.5 km"],
-            "correct": "42.195 km"
+            "question": "Which Indian sportsperson is known as the “Flying Sikh”?",
+            "options": ["Milkha Singh", "Kapil Dev", "Major Dhyan Chand", "Neeraj Chopra"],
+            "correct": "Milkha Singh"
         },
         {
-            "question": "Who is the first Indian to win an individual Gold Medal at the Olympic Games?",
-            "options": ["Neeraj Chopra", "Abhinav Bindra", "PV Sindhu", "Leander Paes"],
-            "correct": "Abhinav Bindra"
+            "question": "In which sport is the term “checkmate” used?",
+            "options": ["Boxing", "Chess", "Badminton", "Wrestling"],
+            "correct": "Chess"
         },
         {
-            "question": "Which trophy is associated with domestic First-Class Cricket in India?",
-            "options": ["Santosh Trophy", "Ranji Trophy", "Durand Cup", "Thomas Cup"],
-            "correct": "Ranji Trophy"
+            "question": "How many players from one team are on the court at a time in basketball?",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "correct": "Five"
         }
     ],
     polity: [
         {
-            "question": "Who presides over the Rajya Sabha?",
-            "options": ["The President of India", "The Prime Minister", "The Vice President of India", "The Speaker"],
-            "correct": "The Vice President of India"
+            "question": "What is the supreme law of India?",
+            "options": ["Parliament", "Constitution", "Supreme Court", "Election Commission"],
+            "correct": "Constitution"
         },
         {
-            "question": "Which Article of the Indian Constitution abolishes untouchability?",
-            "options": ["Article 14", "Article 17", "Article 21", "Article 32"],
-            "correct": "Article 17"
+            "question": "Who is the constitutional head of India?",
+            "options": ["Prime Minister", "President", "Chief Justice of India", "Speaker of Lok Sabha"],
+            "correct": "President"
         },
         {
-            "question": "When is Constitution Day celebrated in India?",
-            "options": ["15 August", "26 January", "26 November", "2 October"],
-            "correct": "26 November"
+            "question": "What is the lower house of the Indian Parliament called?",
+            "options": ["Rajya Sabha", "Lok Sabha", "Vidhan Sabha", "Legislative Council"],
+            "correct": "Lok Sabha"
         },
         {
-            "question": "Which constitutional amendment is known as the 'Mini Constitution'?",
-            "options": ["44th Amendment", "42nd Amendment", "73rd Amendment", "86th Amendment"],
-            "correct": "42nd Amendment"
+            "question": "What is the minimum voting age for Indian citizens?",
+            "options": ["16 years", "18 years", "21 years", "25 years"],
+            "correct": "18 years"
         },
         {
-            "question": "Who was the Chairman of the Drafting Committee of the Indian Constitution?",
-            "options": ["Dr. B.R. Ambedkar", "Dr. Rajendra Prasad", "Jawaharlal Nehru", "Sardar Patel"],
-            "correct": "Dr. B.R. Ambedkar"
+            "question": "Who is the head of the Union Government of India?",
+            "options": ["President", "Prime Minister", "Governor", "Chief Justice"],
+            "correct": "Prime Minister"
         },
         {
-            "question": "What is the minimum age required to become the President of India?",
-            "options": ["25 years", "30 years", "35 years", "40 years"],
-            "correct": "35 years"
+            "question": "How many Fundamental Rights are currently guaranteed by the Indian Constitution?",
+            "options": ["Five", "Six", "Seven", "Eight"],
+            "correct": "Six"
         }
     ],
     movies: [
         {
-            "question": "Which movie features the fictional planet Pandora?",
-            "options": ["Interstellar", "Avatar", "Star Wars", "Guardians of the Galaxy"],
-            "correct": "Avatar"
+            "question": "Which Indian actor is popularly known as the “King Khan”?",
+            "options": ["Shah Rukh Khan", "Amitabh Bachchan", "Aamir Khan", "Salman Khan"],
+            "correct": "Shah Rukh Khan"
         },
         {
-            "question": "Which superhero is also known as the 'Caped Crusader'?",
-            "options": ["Superman", "Batman", "Spider-Man", "Iron Man"],
-            "correct": "Batman"
+            "question": "Which animated movie features the characters Elsa and Anna?",
+            "options": ["Moana", "Frozen", "Encanto", "Tangled"],
+            "correct": "Frozen"
         },
         {
-            "question": "Which award is considered the highest honor in Indian cinema?",
-            "options": ["Filmfare Award", "Dadasaheb Phalke Award", "National Film Award", "Padma Shri"],
-            "correct": "Dadasaheb Phalke Award"
+            "question": "Which Indian movie features the characters Rancho, Raju and Farhan?",
+            "options": ["3 Idiots", "Dangal", "PK", "Taare Zameen Par"],
+            "correct": "3 Idiots"
         },
         {
-            "question": "Who directed the movie 'Interstellar' and 'Inception'?",
-            "options": ["Steven Spielberg", "Christopher Nolan", "James Cameron", "Quentin Tarantino"],
-            "correct": "Christopher Nolan"
+            "question": "Who played the character of Captain America in the Avengers film series?",
+            "options": ["Daniel Radcliffe", "Tom Holland", "Chris Evans", "Robert Pattinson"],
+            "correct": "Chris Evans"
         },
         {
-            "question": "Which actor played the character of Tony Stark in the Marvel Cinematic Universe?",
-            "options": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Mark Ruffalo"],
-            "correct": "Robert Downey Jr."
+            "question": "Which movie features the superhero character Spider-Man?",
+            "options": ["Avatar", "Spider-Man", "Titanic", "The Lion King"],
+            "correct": "Spider-Man"
         },
         {
-            "question": "Who composed the iconic music album for the film 'Roja' and 'Lagaan'?",
-            "options": ["A. R. Rahman", "Pritam", "Shankar-Ehsaan-Loy", "Vishal-Shekhar"],
-            "correct": "A. R. Rahman"
+            "question": "Which Indian film is based on the life of wrestler Mahavir Singh Phogat and his daughters?",
+            "options": ["Dangal", "Sultan", "Mary Kom", "Bhaag Milkha Bhaag"],
+            "correct": "Dangal"
         }
     ]
 };

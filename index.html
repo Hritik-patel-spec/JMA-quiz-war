@@ -8,6 +8,7 @@
 <!-- External Scripts -->
 <script src="questions.js"></script>
 <script src="music.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 * {
@@ -120,9 +121,9 @@ html, body {
 }
 
 #welcomeScreen .main-logo {
-    width: 300px;  /* Purana: 220px (ya 150px) -> Isse bada karke 280px kar dein */
-    height: 300px; /* Width ke barabar rakein */
-    max-width: 80vw; /* Mobile screen ke hisab se responsive rakhne ke liye */
+    width: 300px;
+    height: 300px;
+    max-width: 80vw;
     margin-bottom: 20px;
     background: url('jma.png') no-repeat center center / contain;
     filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
@@ -131,7 +132,7 @@ html, body {
 
 h1 {
     color: #ffd700;
-    font-size: 3.2rem; /* Purana: 2.2rem */
+    font-size: 3.2rem;
     margin: 15px 0;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
     letter-spacing: 1.5px;
@@ -144,14 +145,14 @@ h1 {
 
 h2 {
     color: #f0e6ff;
-    font-size: 2.2rem; /* Purana: 1.4rem */
+    font-size: 2.2rem;
     margin-top: 5px;
     font-weight: 500;
 }
 
 .sub-text {
     color: #d1b8ff;
-    font-size: 1.4rem; /* Purana: 1rem */
+    font-size: 1.4rem;
     margin-bottom: 35px;
 }
 
@@ -161,23 +162,22 @@ h2 {
     border-radius: 40px;
 }
 
-/* Menu Grid & Category Cards Layout Expansion */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px; /* Purana: 15px */
-    width: 90%; /* Screen breadth maximize karne ke liye */
-    max-width: 1300px; /* Purana: 950px */
+    gap: 25px;
+    width: 90%;
+    max-width: 1300px;
     margin-top: 30px;
 }
 
 .category-card {
-    padding: 28px 20px; /* Height & spacing badhane ke liye */
+    padding: 28px 20px;
     background: linear-gradient(135deg, rgba(35, 18, 68, 0.88) 0%, rgba(20, 10, 45, 0.88) 100%);
     border: 2px solid rgba(255, 215, 0, 0.6);
     border-radius: 16px;
     color: #ffd700;
-    font-size: 1.5rem; /* Purana: 1.1rem */
+    font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -186,7 +186,7 @@ h2 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    min-height: 120px; /* Purana: 80px */
+    min-height: 120px;
     gap: 12px;
     backdrop-filter: blur(8px);
 }
@@ -207,7 +207,7 @@ h2 {
     box-shadow: none;
 }
 
-#counter {
+#counter, #audCounter {
     font-size: 1rem;
     color: #d1b8ff;
     letter-spacing: 1px;
@@ -225,7 +225,8 @@ h2 {
     gap: 8px;
 }
 
-#question {
+/* Question box - Shared style for both main & audience questions */
+#question, #audQuestion {
     font-size: 1.4rem;
     margin-bottom: 25px;
     font-weight: 600;
@@ -330,7 +331,7 @@ button {
     gap: 6px;
 }
 
-#revealBtn {
+#revealBtn, #audRevealBtn {
     background: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%);
     color: white;
     box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
@@ -368,6 +369,7 @@ button:disabled {
     gap: 8px;
     margin: 10px 0;
 }
+
 .rule-item {
     display: flex;
     align-items: flex-start;
@@ -385,7 +387,7 @@ button:disabled {
     height: 24px;
     min-width: 24px;
     fill: #ffd700;
-    margin-top: 2px; /* Checkmark icon alignment with text top line */
+    margin-top: 2px;
 }
 
 .rule-text {
@@ -397,14 +399,33 @@ button:disabled {
 .rule-text strong {
     color: #ffd700;
     margin-right: 6px;
-    white-space: nowrap; /* Title and content inline flow */
+    white-space: nowrap;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* MOBILE RESPONSIVE MEDIA QUERIES */
+/* Audience Special Badge Styles */
+.audience-badge {
+    background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
 @media screen and (max-width: 768px) {
     .container {
         justify-content: center !important;
@@ -436,10 +457,10 @@ button:disabled {
         margin-bottom: 20px;
     }
 
-  .svg-icon-large {
-    width: 55px;
-    height: 55px;
-}
+    .svg-icon-large {
+        width: 55px;
+        height: 55px;
+    }
 
     .menu-grid {
         grid-template-columns: 1fr;
@@ -457,7 +478,7 @@ button:disabled {
         justify-content: flex-start;
     }
 
-    #question {
+    #question, #audQuestion {
         font-size: 1.05rem;
         padding: 12px 15px;
         min-height: 65px;
@@ -512,7 +533,6 @@ button:disabled {
 </head>
 <body>
 
-<!-- Sunset Mountain Illustration Vector Background -->
 <div class="vector-bg-layer">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
         <defs>
@@ -627,12 +647,7 @@ button:disabled {
 
         <div class="rule-item">
             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            <div class="rule-text"><strong>No Changing Choice:</strong> Once 'Reveal Answer' is clicked, the selected option cannot be changed.</div>
-        </div>
-
-        <div class="rule-item">
-            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            <div class="rule-text"><strong>Category Completion:</strong> Completing a round locks that category permanently on the Menu Screen.</div>
+            <div class="rule-text"><strong>Audience Round:</strong> Special bonus questions will appear for the audience during rounds!</div>
         </div>
 
         <div class="rule-item">
@@ -643,11 +658,10 @@ button:disabled {
     
     <button id="introNextBtn">PROCEED TO MENU</button>
 </div>
+
 <!-- 3. MENU SCREEN (INDEX PAGE) -->
 <div id="menuScreen" class="container page-enter" style="display:none;">
-    <h1>
-        SELECT QUIZ CATEGORY
-    </h1>
+    <h1>SELECT QUIZ CATEGORY</h1>
     <div class="menu-grid">
         <div id="cat-gk" class="category-card" onclick="selectCategory('gk')">
             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
@@ -687,7 +701,7 @@ button:disabled {
     <div id="counter"></div>
     <div class="timer">
         <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-        Time Left: <span id="timer">30</span>s
+        Time Left: <span id="timer">20</span>s
     </div>
     <div id="question"></div>
     <div class="options" id="options"></div>
@@ -701,7 +715,30 @@ button:disabled {
     </div>
 </div>
 
-<!-- 5. RESULT SCREEN -->
+<!-- 5. AUDIENCE QUESTION SCREEN -->
+<div id="audienceScreen" class="container page-enter" style="display:none;">
+    <h1>
+        <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V18H8v2h8v-2h-3v-2.1c2.08-.43 3.68-2.1 3.96-4.24C19.32 11.36 21 9.38 21 7V5c0-1.1-.9-2-2-2zM5 7h2v3.08C5.58 9.71 5 8.44 5 7zm14 0c0 1.44-.58 2.71-2 3.08V7h2z"/></svg>
+        JMA QUIZ WAR 2026
+    </h1>
+    <div class="audience-badge">🎉 AUDIENCE SPECIAL QUESTION 🎉</div>
+    <div id="audCounter"></div>
+    <div class="timer">
+        <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+        Time Left: <span id="audTimer">20</span>s
+    </div>
+    <div id="audQuestion"></div>
+    <div class="options" id="audOptions"></div>
+    <div class="controls">
+        <button id="audRevealBtn">
+            Reveal Answer
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+        </button>
+        <button id="audResumeBtn" class="hidden">Back to Main Quiz</button>
+    </div>
+</div>
+
+<!-- 6. RESULT SCREEN -->
 <div id="resultScreen" class="container page-enter" style="display:none;">
     <h1>
         <svg class="svg-icon-large" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V18H8v2h8v-2h-3v-2.1c2.08-.43 3.68-2.1 3.96-4.24C19.32 11.36 21 9.38 21 7V5c0-1.1-.9-2-2-2z"/></svg>
@@ -713,6 +750,82 @@ button:disabled {
 </div>
 
 <script>
+// Category-wise Audience Questions Pool
+const audienceQuestionsByCategory = {
+    gk: [
+        {
+            question: "Which is the only continent on Earth that lies in all four hemispheres?",
+            options: ["Asia", "South America", "Africa", "Antarctica"],
+            correct: "Africa"
+        },
+        {
+            question: "Which ocean trench is the deepest point on Earth?",
+            options: ["Puerto Rico Trench", "Java Trench", "Mariana Trench", "South Sandwich Trench"],
+            correct: "Mariana Trench"
+        }
+    ],
+    history: [
+        {
+            question: "Which city served as the ancient capital of the Chola Dynasty?",
+            options: ["Madurai", "Thanjavur", "Kanchipuram", "Ujjain"],
+            correct: "Thanjavur"
+        },
+        {
+            question: "Who was the Viceroy of India when the Partition of Bengal took place in 1905?",
+            options: ["Lord Ripon", "Lord Curzon", "Lord Mountbatten", "Lord Dalhousie"],
+            correct: "Lord Curzon"
+        }
+    ],
+    science: [
+        {
+            question: "What is the approximate escape velocity required to leave Earth's gravity?",
+            options: ["9.8 km/s", "11.2 km/s", "15.4 km/s", "25.0 km/s"],
+            correct: "11.2 km/s"
+        },
+        {
+            question: "Which subatomic particle was discovered by Sir James Chadwick in 1932?",
+            options: ["Electron", "Proton", "Neutron", "Positron"],
+            correct: "Neutron"
+        }
+    ],
+    sports: [
+        {
+            question: "In which year were the first modern Olympic Games held in Athens?",
+            options: ["1896", "1900", "1904", "1912"],
+            correct: "1896"
+        },
+        {
+            question: "What is the length of a standard Marathon race in kilometers?",
+            options: ["40.15 km", "42.195 km", "45.00 km", "50.25 km"],
+            correct: "42.195 km"
+        }
+    ],
+    polity: [
+        {
+            question: "Which Article of the Indian Constitution empowers the President to declare a National Emergency?",
+            options: ["Article 352", "Article 356", "Article 360", "Article 370"],
+            correct: "Article 352"
+        },
+        {
+            question: "Which Constitutional Amendment lowered the voting age in India from 21 to 18 years?",
+            options: ["42nd Amendment", "44th Amendment", "61st Amendment", "73rd Amendment"],
+            correct: "61st Amendment"
+        }
+    ],
+    movies: [
+        {
+            question: "Which movie won the first-ever Academy Award (Oscar) for Best Picture in 1929?",
+            options: ["Sunrise", "Wings", "Metropolis", "The Jazz Singer"],
+            correct: "Wings"
+        },
+        {
+            question: "Which Indian movie was the first to be nominated for the Academy Award for Best International Feature Film?",
+            options: ["Sholay", "Mother India", "Lagaan", "Salaam Bombay!"],
+            correct: "Mother India"
+        }
+    ]
+};
+
 let activeCategoryKey = null;
 let activeQuestions = [];
 let questionHistory = {};
@@ -724,6 +837,10 @@ let selectedOptionText = null;
 let isAnswerRevealed = false;
 let completedCategories = [];
 
+// Audience Trackers
+let pendingAudienceTrigger = false;
+let audSelectedOptionText = null;
+
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const timerEl = document.getElementById("timer");
@@ -732,10 +849,18 @@ const prevBtn = document.getElementById("prevBtn");
 const revealBtn = document.getElementById("revealBtn");
 const counterEl = document.getElementById("counter");
 
+const audQuestionEl = document.getElementById("audQuestion");
+const audOptionsEl = document.getElementById("audOptions");
+const audTimerEl = document.getElementById("audTimer");
+const audRevealBtn = document.getElementById("audRevealBtn");
+const audResumeBtn = document.getElementById("audResumeBtn");
+const audCounterEl = document.getElementById("audCounter");
+
 const welcomeScreen = document.getElementById("welcomeScreen");
 const introScreen = document.getElementById("introScreen");
 const menuScreen = document.getElementById("menuScreen");
 const quizScreen = document.getElementById("quizScreen");
+const audienceScreen = document.getElementById("audienceScreen");
 const resultScreen = document.getElementById("resultScreen");
 
 const startBtn = document.getElementById("startBtn");
@@ -786,6 +911,12 @@ prevBtn.onclick = () => {
 };
 
 nextBtn.onclick = () => {
+    if ((currentQuestion === 1 || currentQuestion === 3) && pendingAudienceTrigger) {
+        pendingAudienceTrigger = false;
+        loadAudienceQuestion();
+        return;
+    }
+
     if (currentQuestion < activeQuestions.length - 1) {
         currentQuestion++;
         loadQuestion();
@@ -815,20 +946,21 @@ function markCategoryCompleted(catKey) {
 
 revealBtn.onclick = () => revealAnswer();
 
-function startTimer() {
+function startTimer(targetEl, onFinish) {
     clearInterval(timer);
     timeLeft = 20;
-    timerEl.textContent = timeLeft;
+    targetEl.textContent = timeLeft;
 
     timer = setInterval(() => {
         timeLeft--;
-        timerEl.textContent = timeLeft;
+        targetEl.textContent = timeLeft;
 
         if (timeLeft === 10 && typeof playTimerSound === 'function') playTimerSound();
 
         if (timeLeft <= 0) {
             clearInterval(timer);
             stopAllAudio();
+            if (onFinish) onFinish();
         }
     }, 1000);
 }
@@ -863,14 +995,14 @@ function loadQuestion() {
         return;
     }
 
-    startTimer();
+    startTimer(timerEl);
 }
 
 function selectOption(selectedBtn, optionText) {
     if (isAnswerRevealed) return;
     selectedOptionText = optionText;
 
-    document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+    document.querySelectorAll("#options .option").forEach(opt => opt.classList.remove("selected"));
     selectedBtn.classList.add("selected");
 }
 
@@ -886,11 +1018,12 @@ function revealAnswer() {
     if (selectedOptionText === correct) {
         totalScore++;
         if (typeof playCorrectSound === 'function') playCorrectSound();
+        triggerConfetti();
     } else {
         if (typeof playWrongSound === 'function') playWrongSound();
     }
 
-    document.querySelectorAll(".option").forEach(opt => {
+    document.querySelectorAll("#options .option").forEach(opt => {
         opt.style.pointerEvents = "none";
         opt.classList.remove("selected");
 
@@ -905,6 +1038,10 @@ function revealAnswer() {
         selected: selectedOptionText
     };
 
+    if (currentQuestion === 1 || currentQuestion === 3) {
+        pendingAudienceTrigger = true;
+    }
+
     revealBtn.classList.add("hidden");
     nextBtn.classList.remove("hidden");
 }
@@ -913,7 +1050,7 @@ function restoreQuestionState() {
     const previousAnswer = questionHistory[currentQuestion].selected;
     const correct = activeQuestions[currentQuestion].correct;
 
-    document.querySelectorAll(".option").forEach(opt => {
+    document.querySelectorAll("#options .option").forEach(opt => {
         opt.style.pointerEvents = "none";
         if (opt.textContent === correct) opt.classList.add("correct");
         if (previousAnswer !== correct && opt.textContent === previousAnswer) opt.classList.add("wrong");
@@ -922,6 +1059,92 @@ function restoreQuestionState() {
     revealBtn.classList.add("hidden");
     nextBtn.classList.remove("hidden");
 }
+
+function loadAudienceQuestion() {
+    stopAllAudio();
+    audSelectedOptionText = null;
+
+ 
+    const audienceAudio = new Audio('audience.mp3'); 
+    
+
+    audienceAudio.play().catch(error => {
+        console.log("Audio play failed:", error);
+    });
+
+    const catPool = audienceQuestionsByCategory[activeCategoryKey] || audienceQuestionsByCategory['gk'];
+    const qIndex = (currentQuestion === 1) ? 0 : 1;
+    const q = catPool[qIndex % catPool.length];
+
+    audCounterEl.textContent = `Category: ${activeCategoryKey ? activeCategoryKey.toUpperCase() : 'GK'}`;
+    audQuestionEl.textContent = q.question;
+    audOptionsEl.innerHTML = "";
+
+    q.options.forEach(option => {
+        const btn = document.createElement("div");
+        btn.classList.add("option");
+        btn.textContent = option;
+        btn.onclick = () => {
+            audSelectedOptionText = option;
+            document.querySelectorAll("#audOptions .option").forEach(o => o.classList.remove("selected"));
+            btn.classList.add("selected");
+        };
+        audOptionsEl.appendChild(btn);
+    });
+
+    audRevealBtn.classList.remove("hidden");
+    audRevealBtn.disabled = false;
+    audResumeBtn.classList.add("hidden");
+
+    switchScreen(quizScreen, audienceScreen);
+    startTimer(audTimerEl);
+}
+
+audRevealBtn.onclick = () => {
+    clearInterval(timer);
+    stopAllAudio();
+    audRevealBtn.disabled = true;
+
+    const catPool = audienceQuestionsByCategory[activeCategoryKey] || audienceQuestionsByCategory['gk'];
+    const qIndex = (currentQuestion === 1) ? 0 : 1;
+    const q = catPool[qIndex % catPool.length];
+    const correct = q.correct;
+
+    if (audSelectedOptionText === correct) {
+        if (typeof playCorrectSound === 'function') playCorrectSound();
+        triggerConfetti();
+    } else {
+        if (typeof playWrongSound === 'function') playWrongSound();
+    }
+
+    document.querySelectorAll("#audOptions .option").forEach(opt => {
+        opt.style.pointerEvents = "none";
+        opt.classList.remove("selected");
+
+        if (opt.textContent === correct) opt.classList.add("correct");
+        if (audSelectedOptionText && audSelectedOptionText !== correct && opt.textContent === audSelectedOptionText) {
+            opt.classList.add("wrong");
+        }
+    });
+
+    audRevealBtn.classList.add("hidden");
+    audResumeBtn.classList.remove("hidden");
+};
+
+audResumeBtn.onclick = () => {
+    switchScreen(audienceScreen, quizScreen);
+    if (currentQuestion < activeQuestions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+    } else {
+        if (!completedCategories.includes(activeCategoryKey)) {
+            completedCategories.push(activeCategoryKey);
+            markCategoryCompleted(activeCategoryKey);
+        }
+        finishQuizBtn.classList.remove("hidden");
+        switchScreen(quizScreen, menuScreen);
+    }
+};
 
 function showResults() {
     stopAllAudio();
@@ -936,6 +1159,135 @@ function showResults() {
     const currentVisible = (quizScreen.style.display !== 'none') ? quizScreen : menuScreen;
     switchScreen(currentVisible, resultScreen);
     finalScoreEl.textContent = `Overall Score: ${totalScore} out of ${totalQuestionsCount}!`;
+}
+function startTimer(targetEl, onFinish) {
+    clearInterval(timer);
+    if (typeof stopTimerSound === 'function') stopTimerSound();
+    
+    timeLeft = 20;
+    targetEl.textContent = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        targetEl.textContent = timeLeft;
+
+
+        if (timeLeft === 10 && typeof playTimerSound === 'function') {
+            playTimerSound();
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            if (typeof stopTimerSound === 'function') stopTimerSound();
+            if (onFinish) onFinish();
+        }
+    }, 1000);
+}
+
+function revealAnswer() {
+
+    clearInterval(timer);
+    
+
+    if (typeof stopTimerSound === 'function') stopTimerSound();
+
+    isAnswerRevealed = true;
+    revealBtn.disabled = true;
+
+    const correct = activeQuestions[currentQuestion].correct;
+
+
+    if (selectedOptionText === correct) {
+        totalScore++;
+        if (typeof playCorrectSound === 'function') playCorrectSound();
+        triggerConfetti();
+    } else {
+        if (typeof playWrongSound === 'function') playWrongSound();
+    }
+
+    document.querySelectorAll("#options .option").forEach(opt => {
+        opt.style.pointerEvents = "none";
+        opt.classList.remove("selected");
+
+        if (opt.textContent === correct) opt.classList.add("correct");
+        if (selectedOptionText && selectedOptionText !== correct && opt.textContent === selectedOptionText) {
+            opt.classList.add("wrong");
+        }
+    });
+
+    questionHistory[currentQuestion] = {
+        revealed: true,
+        selected: selectedOptionText
+    };
+
+    if (currentQuestion === 1 || currentQuestion === 3) {
+        pendingAudienceTrigger = true;
+    }
+
+    revealBtn.classList.add("hidden");
+    nextBtn.classList.remove("hidden");
+}
+
+audRevealBtn.onclick = () => {
+    
+    clearInterval(timer);
+    if (typeof stopTimerSound === 'function') stopTimerSound();
+    
+    audRevealBtn.disabled = true;
+
+    const catPool = audienceQuestionsByCategory[activeCategoryKey] || audienceQuestionsByCategory['gk'];
+    const qIndex = (currentQuestion === 1) ? 0 : 1;
+    const q = catPool[qIndex % catPool.length];
+    const correct = q.correct;
+
+    if (audSelectedOptionText === correct) {
+        if (typeof playCorrectSound === 'function') playCorrectSound();
+        triggerConfetti();
+    } else {
+        if (typeof playWrongSound === 'function') playWrongSound();
+    }
+
+    document.querySelectorAll("#audOptions .option").forEach(opt => {
+        opt.style.pointerEvents = "none";
+        opt.classList.remove("selected");
+
+        if (opt.textContent === correct) opt.classList.add("correct");
+        if (audSelectedOptionText && audSelectedOptionText !== correct && opt.textContent === audSelectedOptionText) {
+            opt.classList.add("wrong");
+        }
+    });
+
+    audRevealBtn.classList.add("hidden");
+    audResumeBtn.classList.remove("hidden");
+};
+function triggerConfetti() {
+    if (typeof confetti !== 'function') return;
+
+
+    const defaults = {
+        spread: 70,
+        ticks: 100,          
+        gravity: 0.5,
+        decay: 0.91,
+        startVelocity: 45,
+        scalar: 1.5,     
+        shapes: ['square', 'circle']
+    };
+
+
+    confetti({
+        ...defaults,
+        particleCount: 50,
+        angle: 60,
+        origin: { x: 0, y: 0.8 } 
+    });
+
+    confetti({
+        ...defaults,
+        particleCount: 50,
+        angle: 120,
+        origin: { x: 1, y: 0.8 } 
+    });
 }
 </script>
 
